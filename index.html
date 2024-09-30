@@ -42,17 +42,42 @@
             border: none;
             cursor: pointer;
         }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Echo Referral Example</h1>
-        <form>
+        <form id="referralForm">
             <input type="email" name="email" placeholder="Email" required>
             <input type="text" name="firstName" placeholder="First Name" required>
             <input type="text" name="lastName" placeholder="Last Name" required>
             <input type="submit" value="Submit">
         </form>
+        <div id="message"></div>
     </div>
+
+    <script>
+        document.getElementById('referralForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from actually submitting to a server
+            
+            // Get form data
+            var formData = new FormData(this);
+            var formObject = {};
+            formData.forEach((value, key) => { formObject[key] = value });
+            
+            // Log form data to console (for demonstration purposes)
+            console.log('Form submitted:', formObject);
+            
+            // Display a success message
+            document.getElementById('message').textContent = 'Form submitted successfully!';
+            
+            // Clear the form
+            this.reset();
+        });
+    </script>
 </body>
 </html>
